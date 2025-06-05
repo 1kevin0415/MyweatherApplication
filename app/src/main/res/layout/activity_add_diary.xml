@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".AddDiaryActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加新日记/日程"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"/>
+
+    <EditText
+        android:id="@+id/editTextDiaryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="标题"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="name" />
+
+    <EditText
+        android:id="@+id/editTextDiaryContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="内容..."
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:minLines="5"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/edit_text"
+        android:autofillHints="" />
+
+    <DatePicker
+        android:id="@+id/datePickerDiary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchIsSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设为日程提醒"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/layoutScheduleTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"> <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提醒时间："
+        android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/buttonSelectScheduleTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择时间"
+            android:layout_marginStart="8dp"
+            style="?android:attr/buttonBarButtonStyle" />
+        <TextView
+            android:id="@+id/textViewSelectedScheduleTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="16sp"
+            tools:text="10:00"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/buttonSaveDiary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存"/>
+
+</LinearLayout>

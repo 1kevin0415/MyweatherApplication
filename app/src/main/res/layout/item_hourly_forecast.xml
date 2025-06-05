@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/item_hourly_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        tools:text="15:00" />
+
+    <ImageView
+        android:id="@+id/item_hourly_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        tools:src="@drawable/weather_icon_100"
+        android:contentDescription="天气图标" />
+
+    <TextView
+        android:id="@+id/item_hourly_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="22°" />
+
+</LinearLayout>
