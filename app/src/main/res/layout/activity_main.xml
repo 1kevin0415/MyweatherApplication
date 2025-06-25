@@ -5,52 +5,50 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_default"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
+    <!-- 1. Toolbar 位于顶部 -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="?attr/actionBarTheme"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:title="" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="27dp"
-            app:title="" />
-    </com.google.android.material.appbar.AppBarLayout>
-
+    <!-- 2. 滚动视图在 Toolbar 下方展开 -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/content_scroll_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintTop_toBottomOf="@id/topAppBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+            <!-- 所有天气内容都在这里 -->
+
+            <!-- 城市名称和切换图标 -->
             <TextView
                 android:id="@+id/textViewCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="城市名称"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageViewChangeCity"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="packed" />
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageViewChangeCity"
@@ -64,99 +62,110 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_change_city"
                 app:layout_constraintBottom_toBottomOf="@id/textViewCityName"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textViewCityName"
                 app:layout_constraintTop_toTopOf="@id/textViewCityName"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:tint="@android:color/white" />
 
+            <!-- 天气主图标 -->
             <ImageView
                 android:id="@+id/imageViewWeatherIcon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="16dp"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewCityName" />
 
+            <!-- 温度 -->
             <TextView
                 android:id="@+id/textViewTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="--°C"
+                android:textColor="@android:color/white"
                 android:textSize="48sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageViewWeatherIcon" />
 
+            <!-- 天气状况 -->
             <TextView
                 android:id="@+id/textViewWeatherCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="天气状况"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTemperature" />
 
-            <TextView
-                android:id="@+id/textViewMoreDetails"
+            <!-- 图标按钮组 -->
+            <LinearLayout
+                android:id="@+id/layout_action_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="更多详情占位符"
-                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewWeatherCondition" />
+                app:layout_constraintTop_toBottomOf="@id/textViewWeatherCondition">
 
-            <Button
-                android:id="@+id/buttonOpenMusicPlayer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="播放音乐"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/textViewMoreDetails"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/buttonOpenMusicPlayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:contentDescription="播放音乐"
+                    android:src="@drawable/ic_music_note"
+                    app:backgroundTint="#80FFFFFF"
+                    app:fabSize="mini"
+                    app:tint="@android:color/black" />
 
-            <Button
-                android:id="@+id/buttonOpenAddDiary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="写日记"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/buttonOpenMusicPlayer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/buttonOpenAddDiary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:contentDescription="写日记"
+                    android:src="@drawable/ic_diary"
+                    app:backgroundTint="#80FFFFFF"
+                    app:fabSize="mini"
+                    app:tint="@android:color/black" />
+            </LinearLayout>
 
+            <!-- 逐小时预报 -->
             <TextView
                 android:id="@+id/label_hourly_forecast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="逐小时预报："
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonOpenAddDiary" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_action_buttons" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewHourlyForecast"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/label_hourly_forecast"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_hourly_forecast"
                 tools:listitem="@layout/item_hourly_forecast" />
 
+            <!-- 逐日预报 -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewDailyForecast"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

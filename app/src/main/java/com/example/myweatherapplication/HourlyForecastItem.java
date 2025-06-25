@@ -1,5 +1,7 @@
 package com.example.myweatherapplication;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 public class HourlyForecastItem implements Serializable {
@@ -19,16 +21,21 @@ public class HourlyForecastItem implements Serializable {
 
     // Getter 方法
     public String getFxTime() {
-        // 我们可能只需要显示小时，例如 "15:00" 而不是完整的 "2021-02-16T15:00+08:00"
-        // 这里可以做一个简单的处理，只取时间部分
-        if (fxTime != null && fxTime.contains("T") && fxTime.contains(":")) {
+        // API返回的时间格式是 "2025-06-25T19:00+08:00"
+        // 我们只需要 "19:00" 这部分
+        if (fxTime != null && fxTime.contains("T")) {
             try {
-                return fxTime.substring(fxTime.indexOf("T") + 1, fxTime.lastIndexOf(":"));
+                // 找到 "T" 的位置
+                int tIndex = fxTime.indexOf("T");
+                // 从 "T" 的后一位开始，截取5个字符 (HH:mm)
+                return fxTime.substring(tIndex + 1, tIndex + 6);
             } catch (Exception e) {
-                // 如果格式不符合预期，返回原始时间
+                // 如果出现任何异常，打印日志并返回原始字符串，防止崩溃
+                Log.e("HourlyForecastItem", "解析时间字符串失败: " + fxTime, e);
                 return fxTime;
             }
         }
+        // 如果没有 "T"，按原样返回
         return fxTime;
     }
 
