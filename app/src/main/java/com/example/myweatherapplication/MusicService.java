@@ -137,7 +137,7 @@ public class MusicService extends Service {
         isPlaying = false;
     }
 
-    private void playSongAtIndex(int index) {
+    public void playSongAtIndex(int index) {
         if (songInfoList == null || songInfoList.isEmpty()) {
             Log.e(TAG, "歌曲列表为空，无法播放");
             Toast.makeText(this, "歌曲列表为空", Toast.LENGTH_SHORT).show();
@@ -334,5 +334,8 @@ public class MusicService extends Service {
             return songInfoList.get(currentSongIndex);
         }
         return null; // 或者返回一个默认的 "未知歌曲" SongInfo 对象
+    }
+    public ArrayList<SongInfo> getSongInfoList() {
+        return songInfoList;
     }
 }
