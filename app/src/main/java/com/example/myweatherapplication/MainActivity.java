@@ -585,7 +585,6 @@ public class MainActivity extends AppCompatActivity implements CitySearchAdapter
         }
     }
 
-    // 【最终修正】这个方法现在可以正确处理深色模式了
     private void updateWeatherBackground(String iconCode) {
         // 1. 首先检查当前系统是否处于深色模式
         int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
